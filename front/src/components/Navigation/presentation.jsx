@@ -4,7 +4,13 @@ import React from "react";
 
 //materialUI
 import { DatePicker } from "@material-ui/pickers";
-import { IconButton, Toolbar, Typography, withStyles } from "@material-ui/core";
+import {
+  IconButton,
+  Toolbar,
+  Typography,
+  withStyles,
+  Tooltip,
+} from "@material-ui/core";
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from "@material-ui/icons/ArrowForwardIos";
 import DehazeIcon from "@material-ui/icons/Dehaze";
@@ -21,28 +27,36 @@ const Navigation = ({ month, setNextMonth, setPreviousMonth, setMonth }) => {
   return (
     <StyledToolbar>
       <Toolbar>
-        <IconButton>
-          <DehazeIcon />
-        </IconButton>
+        <Tooltip title="メニュー" placement="bottom">
+          <IconButton>
+            <DehazeIcon />
+          </IconButton>
+        </Tooltip>
         <img src="/images/calendar_icon.png" width="40" height="40" />
         <StyledTypography color="textSecondary" variant="h5" component="h1">
-          カレンダー
+          Calendar
         </StyledTypography>
-        <IconButton size="small">
-          <ArrowBackIos onClick={setPreviousMonth} />
-        </IconButton>
-        <IconButton size="small">
-          <ArrowForwardIos onClick={setNextMonth} />
-        </IconButton>
+        <Tooltip title="前の月" placement="bottom">
+          <IconButton size="small">
+            <ArrowBackIos onClick={setPreviousMonth} />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="次の月" placement="bottom">
+          <IconButton size="small">
+            <ArrowForwardIos onClick={setNextMonth} />
+          </IconButton>
+        </Tooltip>
       </Toolbar>
-      <StyledDatePicker
-        value={month}
-        onChange={setMonth}
-        variant="inline"
-        format="YYYY年 M月"
-        animateYearScrolling
-        disableToolbar
-      />
+      <Tooltip title="カレンダーを見る" placement="bottom">
+        <StyledDatePicker
+          value={month}
+          onChange={setMonth}
+          variant="inline"
+          format="YYYY年 M月"
+          animateYearScrolling
+          disableToolbar
+        />
+      </Tooltip>
     </StyledToolbar>
   );
 };

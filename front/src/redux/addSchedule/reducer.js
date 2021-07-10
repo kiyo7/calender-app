@@ -4,6 +4,7 @@ import {
   ADD_SCHEDULE_SET_VALUE,
   ADD_SCHEDULE_OPEN_DIALOG,
   ADD_SCHEDULE_CLOSE_DIALOG,
+  ADD_SCHEDULE_START_EDIT,
 } from "./actions";
 
 //initはstoreのstate.addScheduleで取得可能
@@ -17,6 +18,7 @@ const init = {
   },
   //dialogが開いているか?
   isDialogOpen: false,
+  isStartEdit: false,
 };
 
 const addScheduleReducer = (state = init, action) => {
@@ -31,6 +33,8 @@ const addScheduleReducer = (state = init, action) => {
     case ADD_SCHEDULE_CLOSE_DIALOG:
       //dialog閉じた時はformも初期化したいからinitを入れてる
       return init;
+    case ADD_SCHEDULE_START_EDIT:
+      return { ...state, isStartEdit: true };
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 //**メインとなるカレンダーを作成し、表示するコンポーネントです**/
 
-import React from "react";
+import React, { useEffect } from "react";
 //materialUI
 import { GridList, Typography } from "@material-ui/core";
 //style
@@ -16,11 +16,17 @@ const CalendarBoard = ({
   openAddScheduleDialog,
   schedules,
   openCurrentScheduleDialog,
+  fetchSchedule,
 }) => {
   // console.log(schedules);
   // console.log(calendar);
   // //dayjsの配列
   // console.log(schedules);
+
+  useEffect(() => {
+    // 初回のみdataを取得する
+    fetchSchedule();
+  }, []);
   return (
     <div className={styles.container}>
       <GridList className={styles.grid} cols={7} spacing={0} cellHeight="auto">
